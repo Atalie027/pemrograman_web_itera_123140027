@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pos Tugas ITERA — Personal Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-top">
+      <div>
+        <h1 id="greeting" class="greeting">Pos Tugas</h1>
+        <p id="today" class="today"></p>
+      </div>
+      <div id="weather" class="weather" aria-live="polite">Memuat cuaca…</div>
+    </div>
+
+    <section id="nextUp" class="next-up" aria-label="Deadline terdekat"></section>
+
+    <figure class="quote">
+      <blockquote id="quoteText">Memuat kutipan…</blockquote>
+      <figcaption id="quoteAuthor"></figcaption>
+    </figure>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-labelledby="taskHeading">
+      <div class="panel-head">
+        <h2 id="taskHeading">Daftar tugas</h2>
+        <button id="clearDoneBtn" class="btn btn-quiet" type="button">Hapus yang selesai</button>
+      </div>
+
+      <div class="toolbar">
+        <div id="filters" class="filters" role="group" aria-label="Filter status tugas"></div>
+        <label class="search">
+          <span class="sr-only">Cari tugas</span>
+          <input id="searchInput" type="search" placeholder="Cari judul atau mata kuliah">
+        </label>
+      </div>
+
+      <ul id="taskList" class="task-list"></ul>
+    </section>
+
+    <aside class="side">
+      <section class="panel" aria-labelledby="formHeading">
+        <h2 id="formHeading">Tambah tugas</h2>
+        <form id="taskForm" class="form" autocomplete="off">
+          <label>Judul tugas
+            <input name="title" type="text" required maxlength="80" placeholder="Mis. Laporan praktikum PAW">
+          </label>
+          <label>Mata kuliah / kegiatan
+            <input name="course" type="text" list="courseList" maxlength="50" placeholder="Pilih atau ketik sendiri">
+            <datalist id="courseList"></datalist>
+          </label>
+          <div class="form-row">
+            <label>Deadline
+              <input name="deadline" id="deadlineInput" type="date" required>
+            </label>
+            <label>Prioritas
+              <select name="priority">
+                <option value="tinggi">Tinggi</option>
+                <option value="sedang" selected>Sedang</option>
+                <option value="rendah">Rendah</option>
+              </select>
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">Simpan tugas</button>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="progressHeading">
+        <h2 id="progressHeading">Progres</h2>
+        <div id="stats"></div>
+      </section>
+    </aside>
+  </main>
+
+  <p id="notice" class="notice" role="status" aria-live="polite"></p>
+
+  <dialog id="editDialog" class="dialog" aria-labelledby="editHeading">
+    <form id="editForm" class="form">
+      <h2 id="editHeading">Ubah tugas</h2>
+      <input type="hidden" name="id">
+      <label>Judul tugas
+        <input name="title" type="text" required maxlength="80">
+      </label>
+      <label>Mata kuliah / kegiatan
+        <input name="course" type="text" list="courseList" maxlength="50">
+      </label>
+      <div class="form-row">
+        <label>Deadline
+          <input name="deadline" type="date" required>
+        </label>
+        <label>Prioritas
+          <select name="priority">
+            <option value="tinggi">Tinggi</option>
+            <option value="sedang">Sedang</option>
+            <option value="rendah">Rendah</option>
+          </select>
+        </label>
+      </div>
+      <div class="dialog-actions">
+        <button id="editCancel" class="btn btn-quiet" type="button">Batal</button>
+        <button class="btn btn-primary" type="submit">Simpan perubahan</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <p>Praktikum Pengembangan Aplikasi Web · Pertemuan 2 · Teknik Informatika ITERA</p>
+  </footer>
+
+  <!-- type="module" wajib agar import/export ES6 berjalan di browser -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
